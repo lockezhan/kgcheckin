@@ -117,8 +117,7 @@ async function main() {
         execSync(`gh secret set USERINFO -b'${userinfoJSON}' --repo ${process.env.GITHUB_REPOSITORY}`);
         printGreen("secret <USERINFO> token刷新成功")
       } catch (error) {
-        printRed("token刷新失败")
-        throw error
+        printRed("token刷新失败，跳过更新secret（请检查PAT权限）")
       }
     } else {
       printYellow("存在账号需要刷新token，但是未配置PAT，未刷新token最多两个月后过期")
@@ -138,4 +137,3 @@ async function main() {
 }
 
 main()
-
